@@ -7,6 +7,9 @@
                 <div class="list-group-item active dm">
                     Xin chào <strong>{{ Auth::user()->name }}</strong>
                     <br>
+                    @if(Auth::user()->role == 'admin')
+                        <a href="{{ route('admindex') }}" class="btn btn-outline-primary btn-sm text-dank">Trang quản trị</a>
+                    @endif
                     <form action="{{ route('logout') }}" method="POST" class="d-inline-block ml-3">
                         @csrf
                         <button type="submit" class="btn btn-outline-success btn-sm">Logout</button>

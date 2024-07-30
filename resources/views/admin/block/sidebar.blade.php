@@ -13,13 +13,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="danhmuc.html">
+            <a class="nav-link" href="">
                 <i class="fa-solid fa-bookmark"></i>
                 <span class="menu-title">Danh mục</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="donhang.html">
+            <a class="nav-link" href="">
                 <i class="fa-solid fa-shopping-cart"></i>
                 <span class="menu-title">Đơn hàng</span>
             </a>

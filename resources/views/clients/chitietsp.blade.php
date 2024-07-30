@@ -54,7 +54,7 @@
             }
         </style>
     </div>
-    <form action="addgiohang.html" method="post">
+    <form action="{{route('addcart')}}" method="post">
         @csrf
         <div class="row mb-5 boxctiet1">
             <div class="col-md-5">
@@ -73,7 +73,7 @@
                         {{ $product->gia}}
                     </b>
                 </div>
-
+                <input type="hidden" value="{{$product}}" name="product" required >
                 <div class="cart rounded-2" style="background-color: #FFA2A2;">
                     <div >
                         <span style="padding-left: 20px;"><i class="fa-solid fa-gift"></i> Khuyến mãi ưu đãi</span>
@@ -88,7 +88,7 @@
                         <h6>Số lượng</h6>
                         <div class="number-input">
                             <button onclick="decrement()" class="decrement" type="button">-</button>
-                            <input name="quantityy" min="0" value="1" type="number" id="quantity1">
+                            <input name="so_luong" min="1" step="1" value="1" type="number" id="quantity1" required>
                             <button onclick="increment()" class="increment" type="button">+</button>
                             <script>
                                 function increment() {
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="row btn-muahang mt-2 mb-2">
-                    <div class="col-3 btt22"><button class="btn btn-outline-primary"><a href="{{ route('giohang') }}" class="text-decoration-none text-dark">Mua ngay</a><br></button></div>
+                    <div class="col-3 btt22"><button type="submit" class="btn btn-outline-primary" class="text-decoration-none text-dark">Mua ngay</button></div>
                 </div>
             </div>
         </div>

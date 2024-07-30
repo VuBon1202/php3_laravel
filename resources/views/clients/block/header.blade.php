@@ -88,7 +88,7 @@
                     <!-- sign in -->
                     <div class="col-md-2 pt-2 d-flex mt-2">
                         <div class="row">
-                            <div class="col"><a href="{{ route('giohang') }}" class="position-relative ms-1">
+                            <div class="col"><a href="{{ route('cart') }}" class="position-relative ms-1">
                                     <span><i class="fa-solid fa-cart-shopping text-white fs-4"></i></span>
 
                                 </a></div>

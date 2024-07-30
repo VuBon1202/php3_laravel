@@ -29,6 +29,7 @@
                     <table class="table table-bordered m-0">
                         <thead>
                             <tr>
+                                <th class="text-center py-3 px-4" style="width: 300px;">Ảnh sản phẩm</th>
                                 <th class="text-center py-3 px-4" style="width: 300px;">Tên sản phẩm</th>
                                 <th class="text-center py-3 px-4" style="width: 170px;">Giá</th>
                                 <th class="text-center py-3 px-4" style="width: 60px;">Số lượng</th>
@@ -37,24 +38,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($cart as $item)
                             <tr>
                                 <td class="p-4">
                                     <div class="media align-items-center d-flex">
-                                        <img src="" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                        <img src="{{ Storage::url($item['hinh_anh']) }}" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="media align-items-center d-flex">
                                         <div class="media-body">
-                                            <a href="" class="text-dark d-block mx-4 text-decoration-none">Kem dưỡng
-                                                ẩm</a>
+                                            <a href="" class="text-dark d-block mx-4 text-decoration-none">{{$item['ten_san_pham']}}</a>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-center font-weight-semibold align-middle p-4">99.999đ</td>
-                                <td class="align-middle p-4 text-center">1</td>
-                                <td class="text-center font-weight-semibold align-middle p-4 text-danger">99.999đ
+                                <td class="text-center font-weight-semibold align-middle p-4">{{$item['gia']}}đ</td>
+                                <td class="align-middle p-4 text-center">{{$item['so_luong']}}</td>
+                                <td class="text-center font-weight-semibold align-middle p-4 text-danger">{{$item['total']}}đ
                                 </td>
-                                <td class="text-center align-middle px-0"><a href="#"
+                                <td class="text-center align-middle px-0"><a href="/delcart/{{$item['id']}}"
                                         class="shop-tooltip close float-none text-danger text-decoration-none fs-6">X</a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -65,7 +71,7 @@
                     <div class="d-flex">
                         <div class="text-right mt-4">
                             <label class="text-muted font-weight-normal m-0">Tổng đơn</label>
-                            <div class="text-large"><strong>99*****</strong></div>
+                            <div class="text-large"><strong>{{$tong}}đ</strong></div>
                         </div>
                     </div>
                 </div>

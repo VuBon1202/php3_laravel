@@ -77,6 +77,10 @@ class SanPhamController extends Controller
     public function show(string $id)
     {
         //
+        $product = SanPham::findOrFail($id);
+        $product = SanPham::with('comments')->findOrFail($id);
+        return view('admin.sanpham.show', compact('product'));
+
     }
 
     /**

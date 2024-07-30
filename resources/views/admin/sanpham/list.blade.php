@@ -43,6 +43,7 @@
             <td>{{ $sanPham->ngay_nhap }}</td>
             <td>{{ $sanPham->trang_thai == 1 ? 'Còn hàng' : 'Hết hàng' }}</td>
             <td>
+                <a href="{{ route('sanpham.show', $sanPham->id) }}" class="btn bg-secondary text-light">Chi tiết</a>
                 <a href="{{ route('sanpham.edit', $sanPham->id) }}" class="btn btn-warning">Sửa</a>
                 <form action="{{ route('sanpham.destroy', $sanPham->id) }}" class="d-inline" method="POST"
                     onsubmit="return confirm('Bạn có đồng ý xóa hay không?')">

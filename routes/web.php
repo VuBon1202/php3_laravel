@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\cartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\adminController;
@@ -25,7 +26,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/home',[HomeController::class,'home'])->name('home');
+Route::get('/home',[HomeController::class,'index'])->name('home');
 
 
 Route::get('/about',[PageController::class,'about'])->name('about');
@@ -48,13 +49,18 @@ Route::get('/chitietsp/{id}', [ChitietspController::class, 'chitietsp'])->name('
 Route::post('/chitietsp/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::post('/comments/{sanpham}', [CommentController::class, 'store'])->name('comments.store');
 
-// Route::get('/sanpham/{sanPham}', [SanPhamController::class, 'show'])->name('sanpham.show');
-// Route::post('/sanpham/{sanPham}/comments', [CommentController::class, 'store'])->name('comments.store');
 // Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+
+Route::get('/cart',[cartController::class,'index'])->name('cart'); // route để load trang giỏ hàng
+Route::post('/addcart',[cartController::class,'addCart'])->name('addcart'); // route để add sản phẩm vào giỏ hàng, method POST
+Route::get('/delcart/{id}',[cartController::class,'delCart'])->name('delcart'); // route để xóa sản phẩm trong giỏ hàng
+
 
 Route::get('/admin',[AdminsSanPhamController::class,'index'])
 ->name('index')
 ->middleware(CheckRoleAdminMiddleware::class);
+
 Route::resource('sanpham', AdminsSanPhamController::class);
 Auth::routes();
 
