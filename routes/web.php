@@ -40,8 +40,13 @@ Route::get('/admindex',[adminController::class,'admindex'])->name('admindex');
 Route::get('/bill',[BillController::class,'bill'])->name('bill');
 Route::get('/sanphama',[SanphamController::class,'sanphama'])->name('sanphama');
 Route::get('/donhang',[DhthanhcongController::class,'donhang'])->name('donhang');
+
+
+
 Route::get('/chitietsp/{id}', [ChitietspController::class, 'chitietsp'])->name('chitietsp');
 
+Route::post('/chitietsp/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comments/{sanpham}', [CommentController::class, 'store'])->name('comments.store');
 
 // Route::get('/sanpham/{sanPham}', [SanPhamController::class, 'show'])->name('sanpham.show');
 // Route::post('/sanpham/{sanPham}/comments', [CommentController::class, 'store'])->name('comments.store');

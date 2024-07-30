@@ -12,13 +12,13 @@ class CommentController extends Controller
     public function store(Request $request, SanPham $sanpham)
     {
         $request->validate([
-            'body' => 'required',
+            'content' => 'required',
         ]);
-
+        
         $sanpham->comments()->create([
             'user_id' => auth()->id(),
-            'body' => $request->body,
-            'bl_id' => $sanpham->bl_id,
+            'content' => $request->content,
+            'product_id' => $sanpham->id,
         ]);
 
         return back()->with('success', 'Comment added successfully.');

@@ -157,52 +157,38 @@
                     <div class="col-md-12 col-lg-10">
                         <div class="card text-dark">
                             <div class="card-body p-4">
-                                <h4 class="mb-0">Bình luận sản phẩm</h4>
-                                <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
 
-                                {{-- <div class="d-flex flex-start">
-                                    <img class="rounded-circle shadow-1-strong me-3"
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp"
-                                        alt="avatar" width="60" height="60" />
-                                    <div>
-                                        <h6 class="fw-bold mb-1">Maggie Marsh</h6>
+                                <h4 class="mb-0">Bình luận sản phẩm</h4>
+                                <form action="{{ route('comments.store', $product->id) }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <textarea name="content" class="form-control" placeholder="Hãy để lại đánh giá cho sản phẩm của chúng tôi" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success mt-2">Đăng</button>
+                                </form>
+
+
+                                <p class="fw-light mb-4 pb-2 mt-3">Phần bình luận mới nhất của người dùng</p>
+                                <div class="d-flex flex-start">
+                                    @if($product->comments->isEmpty())
+                                    <p>Chưa có bình luận.</p>
+                                    @else
+                                    @foreach($product->comments as $comment)
+                                    <div class="card-body p-2" style="    background-color: aliceblue;">
+                                        <h6 class="fw-bold mb-1">{{ $comment->user->name }}</h6>
                                         <div class="d-flex align-items-center mb-3">
                                             <p class="mb-0">
-                                                March 07, 2021
-                                                <span class="badge bg-primary">Pending</span>
+                                                <span class="badge bg-primary">Ngày đăng:</span>
+                                                {{ $comment->created_at }}
                                             </p>
-                                            <a href="#!" class="link-muted"><i
-                                                    class="fas fa-pencil-alt ms-2"></i></a>
-                                            <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>
-                                            <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>
                                         </div>
                                         <p class="mb-0">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                                            industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                            since the 1500s, when an unknown printer took a galley of type and
-                                            scrambled it.
+                                            {{ $comment->content }}
                                         </p>
-                                    </div>
-                                </div> --}}
-                                <div class="card text-dark">
-                                    <div class="card-body p-4">
-                                        <h2>Comments</h2>
-                                        @if($product->comments->isEmpty())
-                                        <p>No comments yet.</p>
-                                    @else
-                                        <ul>
-                                            @foreach($product->comments as $comment)
-                                                <li>
-                                                    <strong>{{ $comment->user->name }}</strong> said:
-                                                    <p>{{ $comment->content }}</p>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                    </div>@endforeach
                                     @endif
-                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
