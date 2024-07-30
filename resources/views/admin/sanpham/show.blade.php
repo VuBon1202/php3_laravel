@@ -4,6 +4,11 @@
     <h1>{{ $product->ten_san_pham }}</h1>
     <p><img src="{{ Storage::url($product->hinh_anh) }}" width="150px" alt="Hình ảnh sản phẩm"></p>
     <p>Giá: {{ $product->gia }}</p>
+    @if($danhMuc)
+    <h4>Danh mục sản phẩm: {{ $danhMuc->ten_danh_muc }}</h4>
+@else
+    <p>Danh mục không tồn tại.</p>
+@endif
     <p>Số lượng: {{ $product->so_luong }}</p>
     <p>Ngày nhập: {{ $product->ngay_nhap }}</p>
     <p>Trạng thái:
@@ -25,7 +30,7 @@
         <tbody>
             @foreach($product->comments as $comment)
             <tr>
-                <td>{{ $comment->user_id }}</td>
+                <td>{{ $comment->user->name }}</td>
                 <td>{{ $comment->content }}</td>
                 <td>{{ $comment->created_at->format('d-m-Y H:i') }}</td>
             </tr>

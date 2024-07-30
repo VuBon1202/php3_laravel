@@ -64,5 +64,9 @@ class SanPham extends Model
     {
         return $this->hasMany(Comment::class, 'product_id');
     }
+    public function danhMuc()
+    {
+        return $this->belongsTo(DanhMuc::class, 'id_danhmuc');
+    }
     public $timestamps = false;
 }

@@ -6,6 +6,7 @@ use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SanPhamRequest;
+use App\Models\DanhMuc;
 use Illuminate\Support\Facades\Storage;
 
 class SanPhamController extends Controller
@@ -21,16 +22,16 @@ class SanPhamController extends Controller
     public function index(Request $request)
     {
         //
-        $search=$request->input('search');
-        $searchTrangThai=$request->input('searchTrangThai');
-        $listSanPham=SanPham::query()
-            ->when($search, function($query, $search){
+        $search = $request->input('search');
+        $searchTrangThai = $request->input('searchTrangThai');
+        $listSanPham = SanPham::query()
+            ->when($search, function ($query, $search) {
                 return $query
-                    ->where('ten_san_pham', 'like',"%{$search}")
-                    ->orWhere('ma_san_pham','=',"{$search}");        
+                    ->where('ten_san_pham', 'like', "%{$search}")
+                    ->orWhere('ma_san_pham', '=', "{$search}");
             })
-            ->when($searchTrangThai !== null, function($query) use ($searchTrangThai){
-                return $query->where('trang_thai','=',$searchTrangThai);
+            ->when($searchTrangThai !== null, function ($query) use ($searchTrangThai) {
+                return $query->where('trang_thai', '=', $searchTrangThai);
             })
             ->paginate(10);
 
@@ -75,13 +76,25 @@ class SanPhamController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-        $product = SanPham::findOrFail($id);
-        $product = SanPham::with('comments')->findOrFail($id);
-        return view('admin.sanpham.show', compact('product'));
+{
+    // Lấy thông tin sản phẩm theo ID
+    $product = SanPham::findOrFail($id);
 
-    }
+    $danhMuc = $product->danhMuc; // Truyền quan hệ từ model SanPham
+
+    $sanPhams = $danhMuc ? $danhMuc->sanPhams : collect();
+
+    $comments = $product->comments()->with('user')->get();
+
+    // Trả về view với các biến đã truyền
+    return view('admin.sanpham.show', [
+        'danhMuc' => $danhMuc,
+        'sanPhams' => $sanPhams,
+        'product' => $product,
+        'comments' => $comments
+    ]);
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -144,5 +157,15 @@ class SanPhamController extends Controller
 
             return redirect()->route('sanpham.index')->with('success', 'Xóa sản phẩm thành công!');
         }
+    }
+    public function showSanPhamsByDanhMuc($idDanhMuc)
+    {
+        $danhMuc = DanhMuc::find($idDanhMuc);
+        $sanPhams = $danhMuc ? $danhMuc->sanPhams : collect();
+
+        return view('sanpham.index', [
+            'danhMuc' => $danhMuc,
+            'sanPhams' => $sanPhams
+        ]);
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\DangnhapController;
 use App\Http\Controllers\ChinhsachController;
 use App\Http\Controllers\ChitietspController;
 use App\Http\Controllers\AddgiohangController;
+use App\Http\Controllers\admins\DanhMucController;
 use App\Http\Controllers\DhthanhcongController;
 use App\Http\Middleware\CheckRoleAdminMiddleware;
 use App\Http\Controllers\admins\SanPhamController as AdminsSanPhamController;
@@ -63,5 +64,21 @@ Route::get('/admin',[AdminsSanPhamController::class,'index'])
 
 Route::resource('sanpham', AdminsSanPhamController::class);
 Auth::routes();
+
+
+
+
+
+Route::resource('danhmucs', DanhMucController::class);
+Route::get('admin/danhmucs/create', [DanhMucController::class, 'create'])->name('admin.danhmucs.create');
+Route::get('admin/danhmucs/{id}/edit', [DanhMucController::class, 'edit'])->name('admin.danhmucs.edit');
+Route::delete('admin/danhmucs/{id}', [DanhMucController::class, 'destroy'])->name('admin.danhmucs.destroy');
+Route::post('admins/danhmucs', [DanhMucController::class, 'store'])->name('admins.danhmucs.store');
+Route::get('admin/danhmucs', [DanhMucController::class, 'index'])->name('admin.danhmucs.index');
+Route::put('admins/danhmucs/{id}', [DanhMucController::class, 'update'])->name('admins.danhmucs.update');
+
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
