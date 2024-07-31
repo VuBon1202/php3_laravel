@@ -41,8 +41,9 @@ Route::get('/giohang',[AddgiohangController::class,'giohang'])->name('giohang');
 Route::get('/admindex',[adminController::class,'admindex'])->name('admindex');
 Route::get('/bill',[BillController::class,'bill'])->name('bill');
 Route::get('/sanphama',[SanphamController::class,'sanphama'])->name('sanphama');
+Route::get('/sanpham', [SanPhamController::class, 'search'])->name('products.search');
 Route::get('/donhang',[DhthanhcongController::class,'donhang'])->name('donhang');
-
+Route::get('/products/search', [SanPhamController::class, 'search'])->name('products.search');
 
 
 Route::get('/chitietsp/{id}', [ChitietspController::class, 'chitietsp'])->name('chitietsp');

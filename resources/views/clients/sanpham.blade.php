@@ -50,49 +50,29 @@
                 </div>
                 <div class="d-lg-flex align-items-lg-center pt-2">
                     <div class="d-flex align-items-center my-2 bg-light border mx-lg-2">
-                        <form action="#" method="post">
-                            <select name="price_range">
-                                <option value="" hidden>Sắp xếp</option>
-                                <option value="newest">Sản phẩm mới nhất</option>
-                                <option value="oldest">Sản phẩm cũ nhất</option>
-                            </select>
+                        <div class="d-lg-flex align-items-lg-center pt-2">
+                            <div class="d-flex align-items-center my-2 bg-light border mx-lg-2">
+
+                                <form action="{{ route('products.search') }}" method="GET">
+                                    @csrf
+                                    <select name="category">
+                                        <option value="" hidden>Danh mục</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->ten_danh_muc }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    
+                                    <input type="submit" value="Tìm kiếm">
+                                </form>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="py-md-0 py-3">
-                    <section id="sidebar">
-                        <div class="py-3 fon_checkbox">
-
-                            <h5 class="font-weight-bold">Giá</h5>
-                            <div class="form-inline d-flex align-items-center py-1">
-                                <label class="tick">Dưới 300.000đ
-                                    <input type="checkbox" name="price_range" value="1"><span class="check"></span>
-                                </label>
-                            </div>
-                            <div class="form-inline d-flex align-items-center py-1">
-                                <label class="tick">Từ 300.000đ - 500.000đ
-                                    <input type="checkbox" name="price_range" value="2"><span class="check"></span>
-                                </label>
-                            </div>
-                            <div class="form-inline d-flex align-items-center py-1">
-                                <label class="tick">Từ 500.000đ - 700.000đ
-                                    <input type="checkbox" name="price_range" value="3"><span class="check"></span>
-                                </label>
-                            </div>
-                            <div class="form-inline d-flex align-items-center py-1">
-                                <label class="tick">Từ 700.000đ - 1.000.000đ
-                                    <input type="checkbox" name="price_range" value="4"><span class="check"></span>
-                                </label>
-                            </div>
-                            <div class="form-inline d-flex align-items-center py-1">
-                                <label class="tick">Trên 1.000.000đ
-                                    <input type="checkbox" name="price_range" value="5"><span class="check"></span>
-                                </label>
-                            </div>
-                            <input type="submit" value="Lọc sản phẩm" name="locgia_sp">
-                            </form>
-                        </div>
-                    </section> 
-                </div>
+                
+                
                 <div class="container">
     <div class="row">
         <!-- Hiển thị sản phẩm -->

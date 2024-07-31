@@ -36,12 +36,14 @@
                     </div>
                     <!-- search -->
                     <div class="col-md-4">
-                        <form action="seacher" method="POST" class="css input-group mb-3 mt-2 pt-2 focus-input-search">
+                        <form action="{{ route('products.search') }}" method="GET" class="css input-group mb-3 mt-2 pt-2 focus-input-search">
+                            @csrf
                             <input type="text" name="kyw" class="form-control search"
                                 placeholder="Bạn muốn tìm kiếm gì?" aria-label="Tìm kiếm sản phẩm"
                                 aria-describedby="basic-addon2">
-                            <button class="input-group-text" type="submit" id="basic-addon2"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="input-group-text" type="submit" id="basic-addon2">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
                             <style>
                                 .mymainmenu {
                                     background-color: #f08383 !important;
@@ -49,6 +51,7 @@
                             </style>
                         </form>
                     </div>
+                    
                     <!-- support -->
                     <div class="col-md-4 mt-2">
                         <div class="row">
@@ -111,23 +114,7 @@
                                         <div class="category">
                                             <li class="nav-item text-white mt-2">
 
-                                                <i class="fa-solid fa-bars-staggered"></i> Danh mục <span></span>
-                                                <div class="product-list">
-                                                    <ul>
-                                                        <li><a href="{{ route('sanphama') }}">Tất cả sản phẩm</a></li>
-                                                        <li><i class="fa-solid fa-play"></i>
-                                                            <a href="">
-                                                                Kem chống nắng
-                                                            </a>
-                                                        </li>
-                                                        <li><i class="fa-solid fa-play"></i>
-                                                            <a href="">
-                                                                Son môi
-                                                            </a>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
+                                                
                                             </li>
                                         </div>
                                         <li class="nav-item">
